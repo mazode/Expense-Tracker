@@ -3,6 +3,7 @@ import { useState } from "react";
 import Input from "../../components/Inputs/Input";
 import { validateEmail } from "../../utils/helper";
 import { Link, useNavigate } from "react-router-dom";
+import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
 
 const SignUp = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -13,7 +14,26 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
-  const handleSignup = async (e) => {};
+  const handleSignup = async (e) => {
+    e.preventDefault();
+
+    let profileImageUrl = "";
+
+    if (!fullName) {
+      setError("Please enter your full name");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+    if (!password) {
+      setError("Please enter the password");
+      return;
+    }
+
+    setError("");
+  };
 
   return (
     <AuthLayout>
@@ -49,13 +69,20 @@ const SignUp = () => {
                 type="password"
               />
             </div>
-            <p className="text-[13px] text-slate-800 mt-3">
-              Already have an account?{" "}
-              <Link className="font-medium text-primary underline" to="/login">
-                Login
-              </Link>
-            </p>
           </div>
+
+          {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
+
+          <button type="submit" className="btn-primary">
+            Sign Up
+          </button>
+
+          <p className="text-[13px] text-slate-800 mt-3">
+            Already have an account?{" "}
+            <Link className="font-medium text-primary underline" to="/login">
+              Login
+            </Link>
+          </p>
         </form>
       </div>
     </AuthLayout>
