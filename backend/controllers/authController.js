@@ -36,8 +36,33 @@ exports.registerUser = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Error registering user", error: err.message });
+      .json({ message: "Error registering user", error: error.message });
   }
 };
-exports.loginUser = async (req, res) => {};
+exports.loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  // Check for missing fields
+  if (!email || !password) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  try {
+    const user = await User.findOne({ email });
+    // Check if user is valid
+    if (!user || !(await user.comparePassword(password))) {
+      return res.status(400).json({ message: "Invaid Credentials" });
+    }
+
+    res.status(200).json({
+      id: user._id,
+      user,
+      token: generateToken(user._id),
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error logging in user", error: error.message });
+  }
+};
 exports.getUserInfo = async (req, res) => {};
