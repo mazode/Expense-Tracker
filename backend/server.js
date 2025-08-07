@@ -8,6 +8,8 @@ const incomeRoutes = require("./routes/incomeRoutes");
 
 const app = express();
 
+app.use(express.json());
+
 // Middleware to handle CORS
 app.use(
   cors({
@@ -16,8 +18,6 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
-app.use(express.json());
 
 connectDB();
 

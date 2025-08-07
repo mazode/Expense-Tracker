@@ -10,15 +10,15 @@ const { protect } = require("../middlewares/authMiddleware");
 const router = express.Router();
 
 // POST /income - Add a new income entry
-router.post("/income", protect, addIncome);
+router.post("/add", protect, addIncome);
 
 // DELETE /income/:id - Delete an income entry by ID
-router.delete("/income/:id", protect, deleteIncome);
+router.delete("/:id", protect, deleteIncome);
 
 // GET /income - Retrieve all income entries
-router.get("/income", protect, getIncome);
+router.get("/get", protect, getIncome);
 
 // GET /income/download - Download income data as a file
-router.get("/income/download", protect, downloadIncome);
+router.get("/download", protect, downloadIncome);
 
 module.exports = router;
