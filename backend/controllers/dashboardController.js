@@ -5,7 +5,7 @@ const { isValidObjectId, Types } = require("mongoose");
 exports.getDashboardData = async (req, res) => {
   try {
     const userId = req.user.id;
-    const userObjectId = Types.ObjectId(String(userId));
+    const userObjectId = new Types.ObjectId(String(userId));
 
     // Fetch total Income
     const totalIncome = await Income.aggregate([
@@ -48,7 +48,7 @@ exports.getDashboardData = async (req, res) => {
     }).sort({ date: -1 });
 
     // Get total Expense of last 60 days
-    const lastTotalExpense = last60DaysExpenseTransactions.reduce(
+    const lastTotalExpense = lastExpenseTransactions.reduce(
       (sum, transaction) => sum + transaction.amount,
       0
     );
@@ -74,6 +74,7 @@ exports.getDashboardData = async (req, res) => {
       totalBalance:
         (totalIncome[0]?.total || 0) - (totalExpense[0]?.total || 0),
       totalIncome: totalIncome[0]?.total || 0,
+      totalExpense: totalExpense[0]?.total || 0,
       lastExpense: {
         total: lastTotalExpense,
         transactions: lastExpenseTransactions,
@@ -85,11 +86,9 @@ exports.getDashboardData = async (req, res) => {
       recentTransactions: lastTransactions,
     });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Error generating final response",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Error generating final response",
+      error: error.message,
+    });
   }
 };
