@@ -11,3 +11,4 @@ Built the following things so far:
 3. Added Schemas for Income, Expense, User
 4. Added middleware for authentication
 5. Added Image Upload Functionality
+6. Signup & Login API call in frontend
