@@ -10,9 +10,9 @@ const ExpenseSchema = new mongoose.Schema(
     icon: {
       type: String,
     },
-    source: {
+    category: {
       type: String,
-      required: true, // example: salary, investments etc
+      required: true, // example: food, groceries, rent etc
     },
     amount: {
       type: Number,
