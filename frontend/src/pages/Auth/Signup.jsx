@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
-import { UserContext } from "../../context/userContext";
+import { UserContext } from "../../context/UserContext";
 import uploadImage from "../../utils/uploadImage";
 
 const SignUp = () => {
@@ -23,7 +23,7 @@ const SignUp = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    let profileImageUrl = "";
+    let imageUrl = "";
 
     if (!fullName) {
       setError("Please enter your full name");
@@ -45,13 +45,13 @@ const SignUp = () => {
       // Upload image if present
       if (profilePic) {
         const imgUploadRes = await uploadImage(profilePic);
-        profileImageUrl = imgUploadRes.imageUrl || "";
+        imageUrl = imgUploadRes.imageUrl || "";
       }
       const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
         fullName,
         email,
         password,
-        profileImageUrl,
+        imageUrl,
       });
 
       const { token, user } = response.data;
