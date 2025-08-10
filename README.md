@@ -12,3 +12,5 @@ Built the following things so far:
 4. Added middleware for authentication
 5. Added Image Upload Functionality
 6. Signup & Login API call in frontend
+7. Dashboard UI Section
+8. Pie Chart for income, expense
