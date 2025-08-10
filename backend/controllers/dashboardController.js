@@ -47,7 +47,7 @@ exports.getDashboardData = async (req, res) => {
       date: { $gte: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000) },
     }).sort({ date: -1 });
 
-    // Get total Expense of last 60 days
+    // Get Total Expense of last 60 days
     const lastTotalExpense = lastExpenseTransactions.reduce(
       (sum, transaction) => sum + transaction.amount,
       0
