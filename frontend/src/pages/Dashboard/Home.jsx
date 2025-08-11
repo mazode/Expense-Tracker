@@ -11,9 +11,9 @@ import { addThousandsSeparator } from "../../utils/helper";
 import RecentTransactions from "../../components/Dashboard/RecentTransactions";
 import FinanceOverview from "../../components/Dashboard/FinanceOverview";
 import ExpenseTransactions from "../../components/Dashboard/ExpenseTransactions";
-import Last60DaysExpenses from "./Last60DaysExpenses";
-import RecentIncomeWithChart from "./RecentIncomeWithChart";
-import RecentIncome from "./RecentIncome";
+import Last60DaysExpenses from "../../components/Dashboard/Last60DaysExpenses";
+import RecentIncomeWithChart from "../../components/Dashboard/RecentIncomeWithChart";
+import RecentIncome from "../../components/Dashboard/RecentIncome";
 
 const Home = () => {
   useUserAuth();
