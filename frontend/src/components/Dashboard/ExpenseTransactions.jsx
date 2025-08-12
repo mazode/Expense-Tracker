@@ -9,22 +9,24 @@ const ExpenseTransactions = ({ transactions, onSeeMore }) => {
         <h5 className="text-lg">Expenses</h5>
 
         <button className="card-btn" onClick={onSeeMore}>
-          See All <LuArr owRight className="text-base" />
+          See All <LuArrowRight className="text-base" />
         </button>
       </div>
 
       <div className="mt-6">
-        {transactions?.slice(0, 5)?.map((expense) => {
-          <TransactionInfoCard
-            key={expense?.id}
-            title={expense.category}
-            icon={expense.icon}
-            date={moment(expense.date).format("Do MMM YYYY")}
-            amount={expense.amount}
-            type="expense"
-            hideDeleteBtn
-          />;
-        })}
+        {(Array.isArray(transactions) ? transactions : [])
+          ?.slice(0, 5)
+          ?.map((expense) => (
+            <TransactionInfoCard
+              key={expense?.id}
+              title={expense.category}
+              icon={expense.icon}
+              date={moment(expense.date).format("Do MMM YYYY")}
+              amount={expense.amount}
+              type="expense"
+              hideDeleteBtn
+            />
+          ))}
       </div>
     </div>
   );

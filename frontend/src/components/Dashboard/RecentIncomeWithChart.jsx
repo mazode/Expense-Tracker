@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CustomPieChart from "../../components/Charts/CustomPieChart";
 
 const COLORS = ["#875CF5", "#FA2C37", "#FF6900", "#4"];
 
 const RecentIncomeWithChart = ({ data, totalIncome }) => {
-  const [chartData, setChartData] = [];
+  const [chartData, setChartData] = useState([]);
 
   const prepareChartData = () => {
     const dataArr = data?.map((item) => ({
