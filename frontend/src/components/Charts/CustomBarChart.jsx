@@ -9,7 +9,6 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
-import CustomTooltip from "./CustomTooltip";
 
 const CustomBarChart = ({ data }) => {
   //Function to alternate colors
@@ -49,12 +48,12 @@ const CustomBarChart = ({ data }) => {
           />
           <YAxis tick={{ fontSize: 12, fill: "#555" }} stroke="none" />
 
-          <Tooltip content={CustomTooltip} />
+          <Tooltip content={(props) => <CustomTooltip {...props} />} />
 
           <Bar
             dataKey="amount"
             fill="#FF8042"
-            radius={[10, 10, 0, 10]}
+            radius={[10, 10, 0, 0]}
             activeDot={{ r: 8, fill: "yellow" }}
             activeStyle={{ fill: "green" }}
           >
