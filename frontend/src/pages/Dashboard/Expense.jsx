@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 import ExpenseOverview from "../../components/Expense/ExpenseOverview";
 import AddExpenseForm from "../../components/Expense/AddExpenseForm";
 import ExpenseList from "../../components/Expense/ExpenseList";
+import DashboardLayout from "../../components/layouts/DashboardLayout";
+import Modal from "../../components/Modal";
+import DeleteAlert from "../../components/DeleteAlert";
 
 const Expense = () => {
   useUserAuth();

@@ -30,7 +30,27 @@ export const addThousandsSeparator = (num) => {
 };
 
 export const prepareExpenseBarChartData = (data = []) => {
-  const chartData = data?.map((item) => ({
+  const today = new Date();
+  const sixtyDaysAgo = new Date(today);
+  sixtyDaysAgo.setDate(today.getDate() - 60);
+
+  // 1. Filter for last 60 days
+  const filteredData = data.filter((item) => {
+    const itemDate = new Date(item.date);
+    return itemDate >= sixtyDaysAgo && itemDate <= today;
+  });
+
+  // 2. Sort by date (oldest to newest)
+  const sortedData = filteredData.sort(
+    (a, b) => new Date(a.date) - new Date(b.date)
+  );
+
+  // 3. Map to chart-friendly format
+  const chartData = sortedData.map((item) => ({
+    month: new Date(item.date).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    }),
     category: item?.category,
     amount: item?.amount,
   }));
