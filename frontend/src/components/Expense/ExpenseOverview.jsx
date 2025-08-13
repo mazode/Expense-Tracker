@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { prepareExpenseLineChartData } from "../../utils/helper";
+import CustomLineChart from "../Charts/CustomLineChart";
 
 const ExpenseOverview = ({ transactions, onAddExpense }) => {
   const [chartData, setChartData] = useState([]);
